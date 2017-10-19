@@ -14,6 +14,16 @@ route.get('/' , (req, res) =>{
   });
 });
 
+route.get('/:id' , (req, res) =>{
+  const userId = req.params.id;
+  return Photo.findById(userId,{
+    include: [{ model: User }]
+  })
+  .then(photosByUser => {
+    return res.json(photosByUser);
+  });
+});
+
 route.get('/:id/new' , (req, res) =>{
   //res.render page to submit new photo
   //render form with username input, text field for description
