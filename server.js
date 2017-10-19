@@ -9,6 +9,7 @@ const db = require('./models');
 const User = db.user;
 const Photo = db.photo;
 const photosRoute = require('./routes/photos');
+const usersRoute = require('./routes/users');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -21,6 +22,7 @@ app.get('/' , (req, res) =>{
 });
 
 app.use('/photos', photosRoute);
+app.use('/users', usersRoute);
 
 const server = app.listen(PORT, () => {
   db.sequelize.sync({force: false});

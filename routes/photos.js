@@ -8,7 +8,10 @@ const User = db.user;
 const Photo = db.photo;
 
 route.get('/' , (req, res) =>{
-  res.json('Photos page');
+  return Photo.findAll()
+  .then((photos)=>{
+    return res.json(photos);
+  });
 });
 
 route.get('/:id/new' , (req, res) =>{
