@@ -11,16 +11,24 @@ route.get('/' , (req, res) =>{
   res.json('Photos page');
 });
 
-route.post('/', (req, res) => {
-  let body = req.body;
-  return User.create({
-    username: body.username,
-    link: body.link,
-    description: body.description
+route.get('/:id/new' , (req, res) =>{
+  //res.render page to submit new photo
+  //render form with username input, text field for description
+  res.json('Add New Photo page');
+});
+
+route.post('/:id/new', (req, res) => {
+  let userId = req.params.id;
+  let title = req.body.title;
+  let link = req.body.link;
+
+  return User.findById(userId)
+  .then( (user) => {
+    return Photo.create({title: title, userId: user.id, link: link});
   })
-  .then((newUser) => {
-    return res.json(newUser);
-  }); 
+  .then( newPhoto => {
+    return res.json(newPhoto);
+  });
 });
 
 module.exports = route;
