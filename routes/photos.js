@@ -11,5 +11,16 @@ route.get('/' , (req, res) =>{
   res.json('Photos page');
 });
 
+route.post('/', (req, res) => {
+  let body = req.body;
+  return User.create({
+    username: body.username,
+    link: body.link,
+    description: body.description
+  })
+  .then((newUser) => {
+    return res.json(newUser);
+  }); 
+});
 
 module.exports = route;
