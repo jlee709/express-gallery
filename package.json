@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/jlee709/express-gallery#readme",
   "dependencies": {
+    "adawat": "0.0.4",
+    "baseem": "^0.1.1",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
