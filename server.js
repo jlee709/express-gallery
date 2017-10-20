@@ -12,6 +12,7 @@ const db = require('./models');
 const User = db.user;
 const Photo = db.photo;
 const photosRoute = require('./routes/photos');
+const redis = require('connect-redis')(session);
 const usersRoute = require('./routes/users');
 const LocalStrategy = require('passport-local').Strategy;
 const saltRounds = 12;
@@ -25,6 +26,7 @@ app.use(express.static('assets'));
 
 //PASSPORT - AUTHORIZATION
 app.use(session({
+  store: new redis(),
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false
