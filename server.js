@@ -1,7 +1,4 @@
 // jshint esversion:6
-// http://167.216.21.3:3000/ - justin ip 
-// http://167.216.15.198:3000 - baseems ip
-
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
@@ -76,6 +73,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
 }));
 
 app.get('/' , (req, res) =>{
+  console.log("***********************",req.user);
   return Photo.findAll({raw:true})
   .then((data)=>{
     return res.render('home',{photos: data});

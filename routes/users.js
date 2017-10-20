@@ -11,6 +11,7 @@ const Photo = db.photo;
 const saltRounds = 12;
 
 route.get('/' , (req, res) =>{
+  console.log("***********************",req.user);
   return User.findAll()
   .then((users)=>{
     return res.render('users', {users: users});
@@ -43,6 +44,7 @@ route.post('/register', (req,res) =>{
 
 //LOGIN ROUTE
 route.get('/login',(req,res)=>{
+  console.log("***********************",req.user);
   res.render("login");
 });
 
@@ -58,21 +60,23 @@ route.get('/logout', (req,res) =>{
 
 //SECRET ROUTE
 function isAuthenticated(req, res, next){
-  console.log(req.isAuthenticated());
-  if(req.isAuthenticated()){next();}
-  else{res.redirect('/');}
+  console.log("***********************",req.user.id,"***********************");
+  let id = parseInt(req.params.id);
+  let userId = parseInt(req.user.id);
+  console.log(id === userId);
+  if(id === req.user.id){
+    req.isAuthenticated();
+    next();
+  }
+  else{
+    res.redirect('/');
+    console.log('denied');}
 }
-route.get('/secret', isAuthenticated, (req,res)=>{
-  // console.log('req.user: ', req.user);
-  // console.log('req.user id: ', req.user.id);
-  // console.log('req.username: ', req.user.username);
-  // console.log('req.user.password: ', req.user.password);
-  res.json('you found the secret');
-});
 
 
 // ID ROUTE
-route.get('/:id' , (req, res) =>{
+route.get('/:id' ,(req, res) =>{
+  console.log("***********************",req.user);
   const userId = req.params.id;
   return User.findById(userId, {
     include: [{model: Photo }]
@@ -82,13 +86,13 @@ route.get('/:id' , (req, res) =>{
 });
 
 //user adding photo route page 
-route.get('/:id/new' , (req, res) =>{
+route.get('/:id/new' ,isAuthenticated, (req, res) =>{
   const userId = req.params.id;
   res.render('addNewPhoto', {userId: userId});
 });
 
 // user commiting photo page 
-route.post('/:id/new', (req, res) => {
+route.post('/:id/new',isAuthenticated, (req, res) => {
   let userId = req.params.id;
   let title = req.body.title;
   let link = req.body.link;
