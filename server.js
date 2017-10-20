@@ -99,6 +99,8 @@ app.get('*', function(req, res){
   res.render('notfound');
 });
 
+
+
 const server = app.listen(PORT, () => {
   db.sequelize.sync({force: false});
   console.log(`Server is Listening on port: ${PORT}`);
