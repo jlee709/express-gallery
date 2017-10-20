@@ -6,11 +6,11 @@
 
 <div class="overlay">
   <div class="wrap">
-   <h1>_Login</h1>
-<form action="/users/login" method="POST">
-   <input type="text" placeholder="_Username" name="username">
-   <input type="password"placeholder="_Password" name="password">
-   <input type="submit" value="_Login">
+   <h1>_Post New Photo</h1>
+<form action="/users/{{userId}}/new" method="POST">
+   <input type="text" placeholder="_Title" name="title">
+   <input type="text"placeholder="_Image_Link" name="link">
+   <input type="submit" value="_Post">
    </form>
   </div>
 </div>

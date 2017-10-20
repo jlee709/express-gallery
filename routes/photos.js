@@ -25,28 +25,6 @@ route.get('/:id' , (req, res) =>{
   });
 });
 
-//user adding photo route page 
-route.get('/:id/new' , (req, res) =>{
-  //res.render page to submit new photo
-  //render form with username input, text field for description
-  res.json('Add New Photo page');
-});
-
-// user commiting photo page 
-route.post('/:id/new', (req, res) => {
-  let userId = req.params.id;
-  let title = req.body.title;
-  let link = req.body.link;
-
-  return User.findById(userId)
-  .then( (user) => {
-    return Photo.create({title: title, userId: user.id, link: link});
-  })
-  .then( newPhoto => {
-    return res.json(newPhoto);
-  });
-});
-
 route.get('/:id/edit' , (req, res) =>{
   //res.render page to submit new photo
   //render form with username input, text field for description
@@ -61,7 +39,7 @@ route.put('/:id/edit', (req,res) => {
 
   return User.findById(userId)
   .then((user)=>{
-    return Photo.update({title: title, link: link}, {where:{userId: user.id}})
+    return Photo.update({title: title, link: link}, {where:{userId: id}})
   .then((updatedPhoto) => {
     return res.json(updatedPhoto);
   });

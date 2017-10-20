@@ -77,7 +77,29 @@ route.get('/:id' , (req, res) =>{
   return User.findById(userId, {
     include: [{model: Photo }]
   }).then(userWithPhotos => {
+    console.log(userWithPhotos);
     return res.render('registeredUsers', {userWithPhotos: userWithPhotos});
+  });
+});
+
+//user adding photo route page 
+route.get('/:id/new' , (req, res) =>{
+  const userId = req.params.id;
+  res.render('addNewPhoto', {userId: userId});
+});
+
+// user commiting photo page 
+route.post('/:id/new', (req, res) => {
+  let userId = req.params.id;
+  let title = req.body.title;
+  let link = req.body.link;
+
+  return User.findById(userId)
+  .then( (user) => {
+    return Photo.create({title: title, userId: user.id, link: link});
+  })
+  .then( newPhoto => {
+    return res.redirect(`http://localhost:3000/users/${userId}`);
   });
 });
 
