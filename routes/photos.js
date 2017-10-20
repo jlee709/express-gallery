@@ -14,6 +14,21 @@ route.get('/' , (req, res) =>{
   });
 });
 
+
+function isAuthenticated(req, res, next){
+  console.log("***********************",req.user.id,"***********************");
+  let id = parseInt(req.params.id);
+  let userId = parseInt(req.user.id);
+  console.log(id === userId);
+  if(id === req.user.id){
+    req.isAuthenticated();
+    next();
+  }
+  else{
+    res.redirect('/');
+    console.log('denied');}
+}
+
 //show all photos from user id
 route.get('/:id' , (req, res) =>{
   const userId = req.params.id;
@@ -25,14 +40,14 @@ route.get('/:id' , (req, res) =>{
   });
 });
 
-route.get('/:id/edit' , (req, res) =>{
+route.get('/:id/edit' ,isAuthenticated, (req, res) =>{
   //res.render page to submit new photo
   //render form with username input, text field for description
   res.json('Edit Photo Page');
 });
 
 
-route.put('/:id/edit', (req,res) => {
+route.put('/:id/edit',isAuthenticated, (req,res) => {
   let userId = req.params.id;
   let title = req.body.title;
   let link = req.body.link;
@@ -46,7 +61,7 @@ route.put('/:id/edit', (req,res) => {
 });
 });
 
-route.delete('/:id/edit', (req, res) => {
+route.delete('/:id/edit',isAuthenticated, (req, res) => {
   let userId = req.params.id;
 
   return Photo.findById(userId)
@@ -57,6 +72,8 @@ route.delete('/:id/edit', (req, res) => {
     });
   });
 });
+
+
 
 
 

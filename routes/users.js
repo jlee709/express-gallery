@@ -14,7 +14,11 @@ route.get('/' , (req, res) =>{
   console.log("***********************",req.user);
   return User.findAll()
   .then((users)=>{
-    return res.render('users', {users: users});
+    let locals = {
+      users:users,
+      id:req.user.username
+    };
+    return res.render('users', locals);
   });
 });
 //REGISTER ROUTE
