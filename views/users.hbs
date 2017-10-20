@@ -1,15 +1,15 @@
 <div id="topLine"></div>
 <div id="headContainer">
-  <div id="title">_{{userWithPhotos.username}}</div>
+  <div id="title">_GALLERY_MEMBERS</div>
   <div id="titleSeperator"></div>
-  <div id="rightTitle">{{userWithPhotos.description}}</div>
+  <div id="rightTitle">Our members are dedicated to a photography lifestyle. Our members are dedicated to a photography lifestyle. Our members are dedicated to a photography lifestyle.</div>
 </div>
 <div id="mainSubHeadSeperator"></div>
 <div class="subHeadingContainer">
-  <div id="subHeading"></div>
+  <div id="subHeading">Today's Featured User Photo from _bruce</div>
   <div id="subHeadingSeperator"></div>
   <div id="subHeadingSide">
-    <form action="/" method="get"><button id="register">_Home</button>
+    <form action="/" method="get"><button id="register">_Register</button>
     </form>
     <form action="/users/login" method="get"><button id="login">_Login</button>
     </form>
@@ -18,12 +18,13 @@
 
 <div id="bodyContainer">
   <div id="bodyMain">
-    {{>user-photolist}}
+        <img id="mainPhoto" src="http://bit.ly/2gw5Hbq"></img>
+    <div id="mainPhotoHeading">Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit.<br><br>This gun is advertised as the most popular gun in American crime.<br><br>This gun is advertised as the most popular gun in American crime. </div>
+
   </div>
 
   <div id="bodySeperator"></div>
   <div id="bodySide">
-    <img class="photoSideBar" src="{{userWithPhotos.link}}"></img>
-    <div id="sidePhotoHead">{{userWithPhotos.username}}</div>
+    {{>all-users}}
   </div> 
 </div>

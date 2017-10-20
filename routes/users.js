@@ -13,7 +13,7 @@ const saltRounds = 12;
 route.get('/' , (req, res) =>{
   return User.findAll()
   .then((users)=>{
-    return res.render('users', {userWithPhotos: users});
+    return res.render('users', {users: users});
   });
 });
 //REGISTER ROUTE
@@ -77,7 +77,7 @@ route.get('/:id' , (req, res) =>{
   return User.findById(userId, {
     include: [{model: Photo }]
   }).then(userWithPhotos => {
-    return res.render('users', {userWithPhotos: userWithPhotos});
+    return res.render('registeredUsers', {userWithPhotos: userWithPhotos});
   });
 });
 
