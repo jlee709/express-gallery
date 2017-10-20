@@ -77,9 +77,7 @@ route.get('/:id' , (req, res) =>{
   return User.findById(userId, {
     include: [{model: Photo }]
   }).then(userWithPhotos => {
-    let data = userWithPhotos.photos;
-    console.log("*******************************",data.title);
-    return res.render('registeredUsers', {userWithPhotos: userWithPhotos, data: data});
+    return res.render('registeredUsers', {userWithPhotos: userWithPhotos});
   });
 });
 
