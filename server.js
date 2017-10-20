@@ -74,7 +74,11 @@ passport.use(new LocalStrategy(function(username, password, done) {
 }));
 
 app.get('/' , (req, res) =>{
-  res.render('home');
+  return Photo.findAll({raw:true})
+  .then((data)=>{
+    console.log("***************" , data);
+    return res.render('home',{photos: data});
+  });
 });
 
 app.use('/photos', photosRoute);
