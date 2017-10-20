@@ -9,9 +9,9 @@
   <div id="subHeading"></div>
   <div id="subHeadingSeperator"></div>
   <div id="subHeadingSide">
-    <form action="/users/register" method="get"><button id="register"></button>
+    <form action="/" method="get"><button id="register">Home</button>
     </form>
-    <form action="/users/login" method="get"><button id="login"></button>
+    <form action="/users/login" method="get"><button id="login">Login</button>
     </form>
   </div>
 </div>
@@ -23,5 +23,7 @@
 
   <div id="bodySeperator"></div>
   <div id="bodySide">
+    <img class="photoSideBar" src="{{userWithPhotos.link}}"></img>
+    <div id="sidePhotoHead">{{userWithPhotos.username}}</div>
   </div> 
 </div>
