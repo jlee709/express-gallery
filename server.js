@@ -42,7 +42,7 @@ passport.serializeUser((user,done) => {
 
 passport.deserializeUser((user, done) => {
   console.log('deserializing');
-  db.users.findOne({where: { id: user.id}})
+  User.findOne({where: { id: user.id}})
   .then(user => {
     return done(null, {
       id: user.id,
@@ -52,7 +52,7 @@ passport.deserializeUser((user, done) => {
 });
 
 passport.use(new LocalStrategy(function(username, password, done) {
-    db.users.findOne({where: { username: username } })
+    User.findOne({where: { username: username } })
     .then( user => {
       if(user === null) {
         return done(null, false, {message: 'bad username or password'});
