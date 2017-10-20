@@ -74,7 +74,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
 }));
 
 app.get('/' , (req, res) =>{
-  res.json('SMOKE TESTTTTT');
+  res.json('Home Page');
 });
 
 app.use('/photos', photosRoute);

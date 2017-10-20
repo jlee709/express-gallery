@@ -26,7 +26,9 @@ route.post('/register', (req,res) =>{
     bcrypt.hash(req.body.password, salt, function(err, hash){
       db.user.create({
         username: req.body.username,
-        password: hash
+        password: hash,
+        link: req.body.link,
+        description: req.body.description
       })
       .then( (user) => {
         console.log(user);
@@ -65,7 +67,7 @@ route.get('/secret', isAuthenticated, (req,res)=>{
   console.log('req.user id: ', req.user.id);
   console.log('req.username: ', req.user.username);
   console.log('req.user.password: ', req.user.password);
-  res.send('you found the secret');
+  res.json('you found the secret');
 });
 
 
