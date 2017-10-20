@@ -76,13 +76,22 @@ passport.use(new LocalStrategy(function(username, password, done) {
 app.get('/' , (req, res) =>{
   return Photo.findAll({raw:true})
   .then((data)=>{
-    console.log("***************" , data);
+    return res.render('home',{photos: data});
+  });
+});
+app.get('/home' , (req, res) =>{
+  return Photo.findAll({raw:true})
+  .then((data)=>{
     return res.render('home',{photos: data});
   });
 });
 
 app.use('/photos', photosRoute);
 app.use('/users', usersRoute);
+
+app.get('/takingyoubackhome', function(req, res){
+  res.render('takingYouHome');
+});
 
 app.get('*', function(req, res){
   res.render('notfound');
