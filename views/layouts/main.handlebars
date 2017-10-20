@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
   <meta charset="UTF-8">
   <title>_ARCHITEKT</title>
 </head>
@@ -12,6 +14,7 @@
 <style>
 body{
   background-color: white;
+  font-family: 'Playfair Display', serif;
 
 }
 
@@ -26,49 +29,146 @@ body{
   justify-content: center;
 }
 #title{
-  flex: 0 0 58%;
+  width: 700px;
   height: 150px;
-  background-color: red;
+  background-color: white;
+  font-size: 70px;
+  color: grey;
+  font-family: times new roman;
+  font-style: bold;
 }
 
 #titleSeperator{
-  flex: 0 0 1%;
+  width: 1px;
+  height: 80px;
+  background-color: lightgrey;
+  margin-left: 43px;
+  margin-right: 34px;
+}
+#rightTitle{
+  width:300px;
   height: 150px;
-  background-color: yellow;
+  font-size: 14px;
+  color: lightgrey;
+}
+
+#mainSubHeadSeperator{
+  width:100%;
+  height: 10px;
+}
+.subHeadingContainer{
+  display: flex;
+  justify-content: center;
+
+}
+
+#subHeading{
+  width: 700px;
+  height: 20px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: lightgrey;
+}
+
+#subHeadingSeperator{
+  width:40px;
   margin-left: 20px;
   margin-right: 20px;
 }
-#rightTitle{
-  flex: 0 0 28%;
-  height: 150px;
-  background-color: red;
+#subHeadingSide{
+  width:300px;
+  height: 20px;
+  display:flex;
+  justify-content: space-around;
 }
-#contentContainer{
-  margin-top: 40px;
+
+#register{
+  height: 20px;
+  width: 140px;
+  text-align: center;
+  border: 1px solid white;
+  background-color: lightgrey;
+  border-radius: 5px;
+  color:grey;
+  font-size: 12px;
+}
+#login{
+  margin-left: 20px;
+  height: 20px;
+  width: 140px;
+  text-align: center;
+  border: 1px solid white;
+  background-color: lightgrey;
+  border-radius: 5px;
+  color:grey;
+  font-size: 12px;
+}
+
+#bodyContainer{
   display: flex;
+  justify-content: center;
+}
+#bodyMain{
+  display: flex-wrap;
   justify-content: center;
 }
 #mainPhoto{
-  flex: 0 0 58%;
-  height: 600px;
+  max-width: 700px;
+  height: 500px;
   background-color: red;
 }
-#mainSeperator{
-  flex: 0 0 1%;
-  height: 150px;
+#mainPhotoHeading{
+  margin-top: 20px;
+  height: 20px;
+  max-width: 700px;
+  font-size: 14px;
+  color: lightgrey;
+
+}
+#bodySeperator{
+  width:40px;
+  height: 20px;
   margin-left: 20px;
   margin-right: 20px;
 }
-#rightSideBar{
-  flex: 0 0 28%;
-  display: flex;
-  justify-content: center;
+#bodySide{
+  width:300px;
+}
+.photoSideBar{
+  width: 300px;
+  height: 250px;
+
+}
+#sidePhotoHead{
+  width: 300px;
+  height: 30px;
+  font-size: 11px;
+  color: lightgrey;
+
 }
 
-#photoOne{
-  width: 300px;
-  height: 200px;
-  background-color: green;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </style>
