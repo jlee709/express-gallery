@@ -1,15 +1,15 @@
 <div id="topLine"></div>
 <div id="headContainer">
-  <div id="title">_{{userWithPhotos.username}}</div>
+  <div id="title">_GALLERY</div>
   <div id="titleSeperator"></div>
-  <div id="rightTitle">{{userWithPhotos.description}}</div>
+  <div id="rightTitle">Like they're actually proud of that shit. This gun is advertised as the most popular gun in American crime. says book that comes with it: the most popular gun in American crime.</div>
 </div>
 <div id="mainSubHeadSeperator"></div>
 <div class="subHeadingContainer">
   <div id="subHeading"></div>
   <div id="subHeadingSeperator"></div>
   <div id="subHeadingSide">
-    <form action="/" method="get"><button id="register">_Home</button>
+    <form action="/" method="get"><button id="register">_Register</button>
     </form>
     <form action="/users/login" method="get"><button id="login">_Login</button>
     </form>
@@ -18,12 +18,11 @@
 
 <div id="bodyContainer">
   <div id="bodyMain">
-    {{>user-photolist}}
+    {{>gallery}}
   </div>
 
   <div id="bodySeperator"></div>
   <div id="bodySide">
-    <img class="photoSideBar" src="{{userWithPhotos.link}}"></img>
-    <div id="sidePhotoHead">{{userWithPhotos.username}}</div>
+    {{>photos-list}}
   </div> 
 </div>

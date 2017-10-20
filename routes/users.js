@@ -13,7 +13,7 @@ const saltRounds = 12;
 route.get('/' , (req, res) =>{
   return User.findAll()
   .then((users)=>{
-    return res.render('users');
+    return res.render('users', {userWithPhotos: users});
   });
 });
 //REGISTER ROUTE

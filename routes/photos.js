@@ -10,7 +10,7 @@ const Photo = db.photo;
 route.get('/' , (req, res) =>{
   return Photo.findAll()
   .then((photos)=>{
-    return res.json(photos);
+    return res.render('allphotos', {photos: photos});
   });
 });
 
