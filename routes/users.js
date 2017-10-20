@@ -47,7 +47,7 @@ route.get('/login',(req,res)=>{
 });
 
 route.post('/login', passport.authenticate('local', {
-    successRedirect: '/photos',
+    successRedirect: '/users',
     failureRedirect: '/'
   }));
 

@@ -74,7 +74,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
 }));
 
 app.get('/' , (req, res) =>{
-  res.json('Home Page');
+  res.render('home');
 });
 
 app.use('/photos', photosRoute);
