@@ -1,39 +1,96 @@
 
-<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Raleway:400,800,700,900,300,100' rel='stylesheet' type='text/css'>
 
 
 <div class="overlay">
   <div class="wrap">
-   <h1>Register Form</h1>
-<input type="text" placeholder="Username">
-<input type="email"placeholder="Password">
-    <input type="submit" value="register">
-   
+   <h1>_Register Form</h1>
+<form action="/users/register" method="POST">
+   <input type="text" placeholder="_Username">
+   <input type="text"placeholder="_Password">
+   <input type="submit" value="_Register">
+   </form>
   </div>
 </div>
 
 
+
 {{!-- STYLES!!! --}}
 <style>
-  overlay{
-    position: blue;
-    background: #fff;
+  .overlay{
+    position: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    width:100%;
+    height:100%;
     top:0;
     left:0;
-    width:100%;
-   height:100%;
   }
+
+  .wrap{
+    width: 550px;
+    margin: 0 auto;
+    padding: 10%;
+  }
+
 
   h1{
     text-align: center;
-    color: #FFF !important;
+    color: #7f7f7f !important;
     margin-top: 20%;
-    font: 60px Lobster;
-    text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
-                 0px 8px 13px rgba(0,0,0,0.1),
-                 0px 18px 23px rgba(0,0,0,0.1);
+    font: 60px Play;
+  }
+  
+  input{
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 7px;
+    border:none;
+    outline: none;
+    font:16px Play;
+  }
+  
+/*  input[type='submit']{
+    
+  }*/
+
+
+  input[type='submit']:hover{
+    cursor: pointer;
+    background: #1a8e58;
+     -webkit-transition:0.8s ease;
+  }
+
+  input[type='text']:hover {
+    border-left: 5px solid #1a8e58;
+      -webkit-transition:0.4s ease;
+
   }
 
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
