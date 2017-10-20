@@ -18,7 +18,7 @@ route.get('/' , (req, res) =>{
 });
 //REGISTER ROUTE
 route.get('/register',(req,res)=>{
-  res.json("Register Page");
+  res.render('register');
 });
 
 route.post('/register', (req,res) =>{
@@ -26,13 +26,13 @@ route.post('/register', (req,res) =>{
     bcrypt.hash(req.body.password, salt, function(err, hash){
       db.user.create({
         username: req.body.username,
-        password: hash,
-        link: req.body.link,
-        description: req.body.description
+        password: hash
+        // link: req.body.link,
+        // description: req.body.description
       })
       .then( (user) => {
         console.log(user);
-        res.redirect('/');
+        res.redirect('/users/login');
       })
       .catch((err) => {
         return res.send('Username has been taken'); 
@@ -43,7 +43,7 @@ route.post('/register', (req,res) =>{
 
 //LOGIN ROUTE
 route.get('/login',(req,res)=>{
-  res.json("Login Page");
+  res.render("login");
 });
 
 route.post('/login', passport.authenticate('local', {

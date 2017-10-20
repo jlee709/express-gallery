@@ -1,6 +1,6 @@
-//jshint esversion:6
+// jshint esversion:6
 // http://167.216.21.3:3000/ - justin ip 
-// 167.216.15.198:3000 - baseems ip
+// http://167.216.15.198:3000 - baseems ip
 
 const express = require('express');
 const session = require('express-session');
