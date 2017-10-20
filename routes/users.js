@@ -38,20 +38,6 @@ app.post('/register', (req,res) =>{
   });
 });
 
-//SECRET ROUTE
-function isAuthenticated(req, res, next){
-  console.log(req.isAuthenticated());
-  if(req.isAuthenticated()){next();}
-  else{res.redirect('/');}
-}
-app.get('/secret', isAuthenticated, (req,res)=>{
-  console.log('req.user: ', req.user);
-  console.log('req.user id: ', req.user.id);
-  console.log('req.username: ', req.user.username);
-  console.log('req.user.password: ', req.user.password);
-  res.send('you found the secret');
-});
-
 //LOGIN ROUTE
 app.get('/login',(req,res)=>{
   res.render('home');
@@ -67,27 +53,20 @@ app.get('/logout', (req,res) =>{
   req.sendStatus(200);
 });
 
-//NEW ROUTE
-route.get('/new', (req, res) =>{
-  //res.render page to submit new user
-  //render form with username input, text field for description
-  res.json('Add New User page');
+//SECRET ROUTE
+function isAuthenticated(req, res, next){
+  console.log(req.isAuthenticated());
+  if(req.isAuthenticated()){next();}
+  else{res.redirect('/');}
+}
+app.get('/secret', isAuthenticated, (req,res)=>{
+  console.log('req.user: ', req.user);
+  console.log('req.user id: ', req.user.id);
+  console.log('req.username: ', req.user.username);
+  console.log('req.user.password: ', req.user.password);
+  res.send('you found the secret');
 });
 
-route.post('/new', (req, res) => {
-  let username = req.body.username;
-  let link = req.body.link;
-  let description = req.body.description;
-
-  return User.create({
-    username: username,
-    link: link, 
-    description: description
-  })
-  .then((newUser) => {
-    return res.json(newUser);
-  });
- });
 
 //ID ROUTE
 route.get('/:id' , (req, res) =>{
