@@ -68,6 +68,29 @@ route.put('/:id/edit', (req,res) => {
 });
 });
 
+route.delete('/:id/edit', (req, res) => {
+  let userId = req.params.id;
+
+  return Photo.findById(userId)
+  .then((user) => {
+    return Photo.destroy({where:{userId: user.id}})
+    .then(()=>{
+      return res.redirect('/:id');
+    });
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 module.exports = route;
