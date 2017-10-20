@@ -1,0 +1,27 @@
+<div id="topLine"></div>
+<div id="headContainer">
+  <div id="title">_{{userWithPhotos.username}}</div>
+  <div id="titleSeperator"></div>
+  <div id="rightTitle"></div>
+</div>
+<div id="mainSubHeadSeperator"></div>
+<div class="subHeadingContainer">
+  <div id="subHeading"></div>
+  <div id="subHeadingSeperator"></div>
+  <div id="subHeadingSide">
+    <form action="/users/register" method="get"><button id="register"></button>
+    </form>
+    <form action="/users/login" method="get"><button id="login"></button>
+    </form>
+  </div>
+</div>
+
+<div id="bodyContainer">
+  <div id="bodyMain">
+    {{>user-photolist}}
+  </div>
+
+  <div id="bodySeperator"></div>
+  <div id="bodySide">
+  </div> 
+</div>
