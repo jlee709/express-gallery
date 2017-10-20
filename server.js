@@ -84,6 +84,10 @@ app.get('/' , (req, res) =>{
 app.use('/photos', photosRoute);
 app.use('/users', usersRoute);
 
+app.get('*', function(req, res){
+  res.render('notfound');
+});
+
 const server = app.listen(PORT, () => {
   db.sequelize.sync({force: false});
   console.log(`Server is Listening on port: ${PORT}`);
