@@ -46,15 +46,15 @@ route.get('/:id/edit' ,isAuthenticated, (req, res) =>{
   res.json('Edit Photo Page');
 });
 
-
-route.put('/:id/edit',isAuthenticated, (req,res) => {
+//UNDER MAINTAITNNCE - updates too many photos
+route.put('/:id/edit', isAuthenticated, (req,res) => {
   let userId = req.params.id;
   let title = req.body.title;
   let link = req.body.link;
 
   return User.findById(userId)
   .then((user)=>{
-    return Photo.update({title: title, link: link}, {where:{userId: id}})
+    return Photo.findByIdAndupdate({title: title, link: link}, {where:{userId: id}})
   .then((updatedPhoto) => {
     return res.json(updatedPhoto);
   });
