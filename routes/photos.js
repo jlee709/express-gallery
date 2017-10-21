@@ -6,6 +6,8 @@ const route = express.Router();
 const db = require('../models');
 const User = db.user;
 const Photo = db.photo;
+const passport = require('passport');
+
 //home route
 route.get('/' , (req, res) =>{
   return Photo.findAll()
@@ -25,25 +27,25 @@ route.get('/:id' , (req, res) =>{
   });
 });
 
-route.get('/:id/edit' , (req, res) =>{
+route.get('/:id/edit', (req, res) =>{
   //res.render page to submit new photo
   //render form with username input, text field for description
   res.json('Edit Photo Page');
 });
 
-
-route.put('/:id/edit', (req,res) => {
+route.put('/:id/edit', passport.authenticate('userId, photoId'),(req,res) => {
   let userId = req.params.id;
   let title = req.body.title;
   let link = req.body.link;
+  let photoId = req.body.id;
 
-  return User.findById(userId)
-  .then((user)=>{
-    return Photo.update({title: title, link: link}, {where:{userId: id}})
-  .then((updatedPhoto) => {
-    return res.json(updatedPhoto);
+ return User.findById(userId)
+.then((user)=>{
+  return Photo.update({title: title, link: link}, {where:{userId: id}})
+.then((updatedPhoto) => {
+  return res.json(updatedPhoto);
+    });
   });
-});
 });
 
 route.delete('/:id/edit', (req, res) => {
@@ -57,18 +59,5 @@ route.delete('/:id/edit', (req, res) => {
     });
   });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = route;

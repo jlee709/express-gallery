@@ -57,11 +57,22 @@ route.get('/logout', (req,res) =>{
 });
 
 //SECRET ROUTE
+
 function isAuthenticated(req, res, next){
+
+  let userId = req.user.id;
+  let ID = parseInt(req.params.id);
+
+  console.log(userId,"XXXXZZZZZZXXXXXXZZZXXXX");
+  console.log(ID,"XXXXZZZZZZXXXXXXZZZXXXX");
+  console.log(ID === userId, 'XXXXXXXXXXXX');
+  if(userId === ID){
   console.log(req.isAuthenticated());
   if(req.isAuthenticated()){next();}
   else{res.redirect('/');}
+  }
 }
+ 
 route.get('/secret', isAuthenticated, (req,res)=>{
   // console.log('req.user: ', req.user);
   // console.log('req.user id: ', req.user.id);
@@ -69,7 +80,6 @@ route.get('/secret', isAuthenticated, (req,res)=>{
   // console.log('req.user.password: ', req.user.password);
   res.json('you found the secret');
 });
-
 
 // ID ROUTE
 route.get('/:id' , (req, res) =>{
@@ -82,13 +92,15 @@ route.get('/:id' , (req, res) =>{
 });
 
 //user adding photo route page 
-route.get('/:id/new' , (req, res) =>{
+route.get('/:id/new' , isAuthenticated, (req, res) =>{
   const userId = req.params.id;
   res.render('addNewPhoto', {userId: userId});
 });
 
+
 // user commiting photo page 
 route.post('/:id/new', (req, res) => {
+  
   let userId = req.params.id;
   let title = req.body.title;
   let link = req.body.link;
@@ -101,10 +113,5 @@ route.post('/:id/new', (req, res) => {
     return res.redirect(`http://localhost:3000/users/${userId}`);
   });
 });
-
-
-
-
-
 
 module.exports = route;

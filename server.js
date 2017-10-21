@@ -31,6 +31,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -70,7 +71,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
         });
       }
     })
-    .catch(err =>{
+    .catch(err => {
       console.error('error: ', err);
   });
 }));
@@ -81,6 +82,7 @@ app.get('/' , (req, res) =>{
     return res.render('home',{photos: data});
   });
 });
+
 app.get('/home' , (req, res) =>{
   return Photo.findAll({raw:true})
   .then((data)=>{
@@ -98,7 +100,6 @@ app.get('/takingyoubackhome', function(req, res){
 app.get('*', function(req, res){
   res.render('notfound');
 });
-
 
 
 const server = app.listen(PORT, () => {
