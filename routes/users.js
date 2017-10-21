@@ -86,8 +86,14 @@ route.get('/:id' ,(req, res) =>{
   const userId = req.params.id;
   return User.findById(userId, {
     include: [{model: Photo }]
-  }).then(userWithPhotos => {
-    return res.render('registeredUsers', {userWithPhotos: userWithPhotos});
+  }).then(userCollection => {
+    console.log(userCollection);
+      let username = req.user ? req.user.username : null;
+      let locals = {
+      photos: userCollection.photos,
+      id: username
+    };
+    return res.render('registeredUsers', locals);
   });
 });
 

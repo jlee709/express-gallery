@@ -40,23 +40,33 @@ route.get('/:id' , (req, res) =>{
   });
 });
 
-route.get('/:id/edit' ,isAuthenticated, (req, res) =>{
-  //res.render page to submit new photo
-  //render form with username input, text field for description
-  res.json('Edit Photo Page');
+route.get('/:id/edit', (req, res) =>{
+  return Photo.findAll()
+  .then((photos)=>{
+    return res.render('edit', {photos: photos});
+  });
 });
 
+<<<<<<< HEAD
 //UNDER MAINTAITNNCE - updates too many photos
 route.put('/:id/edit', isAuthenticated, (req,res) => {
+=======
+
+route.put('/:id/edit', (req,res) => {
+>>>>>>> JustinBaseem
   let userId = req.params.id;
   let title = req.body.title;
   let link = req.body.link;
 
   return User.findById(userId)
   .then((user)=>{
+<<<<<<< HEAD
     return Photo.findByIdAndupdate({title: title, link: link}, {where:{userId: id}})
+=======
+    return Photo.update({title: title, link: link}, {where:{userId: user.id}})
+>>>>>>> JustinBaseem
   .then((updatedPhoto) => {
-    return res.json(updatedPhoto);
+    return res.json("updatedPhoto");
   });
 });
 });

@@ -1,12 +1,12 @@
 <div id="topLine"></div>
 <div id="headContainer">
-  <div id="title">_{{userWithPhotos.username}}</div>
+  <div id="title">_{{id}}</div>
   <div id="titleSeperator"></div>
-  <div id="rightTitle">{{userWithPhotos.description}}<br><br><br><span id="currentUser">
+  <div id="rightTitle">{{photos.description}}<br><br><br><span id="currentUser">
   {{#if id}}
     {{id}}
   {{else}}
-    USername doesnt exist
+    Aloha!
   {{/if}}</div>
 </div>
 <div id="mainSubHeadSeperator"></div>
@@ -28,7 +28,6 @@
 
   <div id="bodySeperator"></div>
   <div id="bodySide">
-    <img class="photoSideBar" src="{{userWithPhotos.link}}"></img>
-    <div id="sidePhotoHead">{{userWithPhotos.username}}</div>
+     {{>photos-list}}
   </div> 
 </div>
