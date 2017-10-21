@@ -11,9 +11,16 @@ const Photo = db.photo;
 const saltRounds = 12;
 
 route.get('/' , (req, res) =>{
+  //console.log("***********************",req.user);
   return User.findAll()
   .then((users)=>{
-    return res.render('users', {users: users});
+   let username = req.user ? req.user.username : null;
+     let locals = {
+      users: users,
+      id: username
+    };
+    console.log(locals,"***********************");
+    return res.render('users', locals);
   });
 });
 //REGISTER ROUTE
@@ -43,6 +50,7 @@ route.post('/register', (req,res) =>{
 
 //LOGIN ROUTE
 route.get('/login',(req,res)=>{
+  console.log("***********************",req.user);
   res.render("login");
 });
 
@@ -53,12 +61,13 @@ route.post('/login', passport.authenticate('local', {
 
 route.get('/logout', (req,res) =>{
   req.logout();
-  req.sendStatus(200);
+  res.sendStatus(200);
 });
 
 //SECRET ROUTE
 
 function isAuthenticated(req, res, next){
+<<<<<<< HEAD
 
   let userId = req.user.id;
   let ID = parseInt(req.params.id);
@@ -80,9 +89,24 @@ route.get('/secret', isAuthenticated, (req,res)=>{
   // console.log('req.user.password: ', req.user.password);
   res.json('you found the secret');
 });
+=======
+  console.log("***********************",req.user.id,"***********************");
+  let id = parseInt(req.params.id);
+  let userId = parseInt(req.user.id);
+  console.log(id === userId);
+  if(id === req.user.id){
+    req.isAuthenticated();
+    next();
+  }
+  else{
+    res.redirect('/');
+    console.log('denied');}
+}
+>>>>>>> JustinBaseem
 
 // ID ROUTE
-route.get('/:id' , (req, res) =>{
+route.get('/:id' ,(req, res) =>{
+  console.log("***********************",req.user);
   const userId = req.params.id;
   return User.findById(userId, {
     include: [{model: Photo }]
@@ -92,15 +116,23 @@ route.get('/:id' , (req, res) =>{
 });
 
 //user adding photo route page 
+<<<<<<< HEAD
 route.get('/:id/new' , isAuthenticated, (req, res) =>{
+=======
+route.get('/:id/new' ,isAuthenticated, (req, res) =>{
+>>>>>>> JustinBaseem
   const userId = req.params.id;
   res.render('addNewPhoto', {userId: userId});
 });
 
 
 // user commiting photo page 
+<<<<<<< HEAD
 route.post('/:id/new', (req, res) => {
   
+=======
+route.post('/:id/new',isAuthenticated, (req, res) => {
+>>>>>>> JustinBaseem
   let userId = req.params.id;
   let title = req.body.title;
   let link = req.body.link;
