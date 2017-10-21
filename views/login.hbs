@@ -6,7 +6,7 @@
 
 <div class="overlay">
   <div class="wrap">
-   <h1>_Login</h1>
+   <h1 class="pulse">_Login</h1>
 <form action="/users/login" method="POST">
    <input type="text" placeholder="_Username" name="username">
    <input type="password"placeholder="_Password" name="password">
@@ -67,6 +67,23 @@ body{
     border-left: 20px solid #1a8e58;
     -webkit-transition:0.4s ease;
   }
+
+   input[type='password']:hover {
+    border-left: 20px solid #1a8e58;
+    -webkit-transition:0.4s ease;
+  }
+
+  /*animate*/
+
+    {{!-- animate --}}
+  @keyframes pulse {
+  0% {transform: scale(1);}
+  25% {transform: scale(1.8);}
+  70% {transform: scale(1);}
+}
+.pulse {
+  animation-name: pulse;
+  animation-duration: 10s;
 
 </style>
 
