@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.engine('.hbs', exphbs({defaultLayout: 'main', extName: '.hbs'}));
 app.set('view engine', '.hbs');
 app.use(express.static('assets'));
-app.use(methodOverride('_method', { methods: ['POST', 'GET']}));
+app.use(methodOverride('_method'));
 
 //PASSPORT - AUTHORIZATION
 app.use(session({

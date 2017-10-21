@@ -61,7 +61,7 @@ route.put('/:id/edit', (req,res) => {
       let local ={
         photo : photo
       };
-      return res.render('/users', local);
+      return res.render('edit', local);
     });
   });
 
