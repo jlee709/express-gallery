@@ -3,6 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
+const methodOverride = require('method-override');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 const db = require('./models');
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.engine('.hbs', exphbs({defaultLayout: 'main', extName: '.hbs'}));
 app.set('view engine', '.hbs');
 app.use(express.static('assets'));
+app.use(methodOverride('_method', { methods: ['POST', 'GET']}));
 
 //PASSPORT - AUTHORIZATION
 app.use(session({

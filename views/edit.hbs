@@ -11,10 +11,10 @@
 <div class="overlay">
   <div class="wrap">
    <h1>_Edit</h1>
-<form action="/users/?_method=PUT" method="post">
+<form action="/users?_method=PUT" method="post">
    <input type="text" placeholder="_Title" name="title">
    <input type="text"placeholder="_Link" name="link">
-   <input type="text"placeholder="_PhotoId" name="id">{{!-- change id later --}}
+   <input type="text"placeholder="{{id}}" name="id">
    <input type="submit" value="_Edit">
    </form>
   </div>

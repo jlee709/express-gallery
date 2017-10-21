@@ -39,6 +39,46 @@ function isAuthenticated(req, res, next){
 
 //show all photos from user id
 
+route.get('/:id/edit', (req, res) =>{
+  let photoId = req.params.id;
+  return Photo.findAll()
+  .then((photos)=>{
+    let local = {
+      photos: photos,
+      id: photoId
+    };
+    return res.render('edit', local);
+  });
+});
+
+
+route.put('/:id/edit', (req,res) => {
+  const data = req.body;
+  const id = req.params.id;
+
+  return Photo.update({title : data.title, link : data.link}, { where : {id : id}})
+    .then((photo) => {
+      let local ={
+        photo : photo
+      };
+      return res.render('/users', local);
+    });
+  });
+
+
+
+route.delete('/:id/edit',isAuthenticated, (req, res) => {
+  let userId = req.params.id;
+
+  return Photo.findById(userId)
+  .then((user) => {
+    return Photo.destroy({where:{userId: user.id}})
+    .then(()=>{
+      return res.redirect('/:id');
+    });
+  });
+});
+
 
 
 
