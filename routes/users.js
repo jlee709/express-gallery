@@ -124,8 +124,4 @@ route.post('/:id/new',isAuthenticated, (req, res) => {
 });
 
 
-
-
-
-
 module.exports = route;

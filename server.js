@@ -18,7 +18,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 
-
 app.use(bodyParser.urlencoded({extended: true}));
 app.engine('.hbs', exphbs({defaultLayout: 'main', extName: '.hbs'}));
 app.set('view engine', '.hbs');
