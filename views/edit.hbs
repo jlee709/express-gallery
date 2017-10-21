@@ -4,22 +4,23 @@
 <link href='https://fonts.googleapis.com/css?family=Raleway:400,800,700,900,300,100' rel='stylesheet' type='text/css'>
 
 
-
-
-
-
 <div class="overlay">
   <div class="wrap">
    <h1>_Edit</h1>
+<<<<<<< HEAD
 <form action="/photos/{{id}}/edit/success?_method=PUT" method= "POST">
    <input type="text" placeholder="_Title" name="title">
    <input type="text"placeholder="_Link" name="link">
    <input type="text"placeholder="{{id}}" name="id">
+=======
+<form action="/photos/{{photo.id}}/edit?_method=PUT" method="post">
+   <input type="text" placeholder="_Title" name="title" value="{{photo.title}}">
+   <input type="text"placeholder="_Link" name="link" value="{{photo.link}}">
+>>>>>>> friday
    <input type="submit" value="_Edit">
    </form>
   </div>
 </div>
-
 
 
 {{!-- STYLES!!! --}}

@@ -6,6 +6,7 @@ const route = express.Router();
 const db = require('../models');
 const User = db.user;
 const Photo = db.photo;
+
 //home route
 route.get('/' , (req, res) =>{
   let value = req.isAuthenticated();
@@ -41,6 +42,7 @@ function isAuthenticated(req, res, next){
 
 route.get('/:id/edit', (req, res) =>{
   let photoId = req.params.id;
+<<<<<<< HEAD
   return Photo.findAll()
   .then((photos)=>{
     let local = {
@@ -48,10 +50,19 @@ route.get('/:id/edit', (req, res) =>{
       id: photoId
     };
     return res.render('edit', local);
+=======
+
+  return Photo.findById(photoId, {raw: true})
+  .then((photo) => {
+    console.log(photo, 'HA{OF:H:AH:AB:ABG:AH"LAN:AOHF:HF');
+    return res.render('edit', {photo: photo});
+>>>>>>> friday
   });
 });
 
+//UNDER MAINTAITNNCE - updates too many photos
 
+<<<<<<< HEAD
 route.put('/:id/edit/success', (req,res) => {
   const data = req.body;
   const id = req.params.id;
@@ -66,8 +77,21 @@ route.put('/:id/edit/success', (req,res) => {
   });
 
 
+=======
+route.put('/:id/edit', (req,res) => {
+  let photoId = req.params.id;
+  let photoTitle = req.body.title;
+  let photoLink = req.body.link;
 
-route.delete('/:id/edit',isAuthenticated, (req, res) => {
+  return Photo.update({title: photoTitle, link: photoLink}, {where:{id: photoId}})
+  .then((updatedPhoto) => {
+    console.log(updatedPhoto, " XXXXXXXXX******XXXXXXXXXX");
+  return res.json("updatedPhoto");
+  });
+ });
+>>>>>>> friday
+
+route.delete('/:id/delete', isAuthenticated, (req, res) => {
   let userId = req.params.id;
 
   return Photo.findById(userId)
@@ -80,6 +104,7 @@ route.delete('/:id/edit',isAuthenticated, (req, res) => {
 });
 
 
+<<<<<<< HEAD
 
 
 
@@ -95,4 +120,6 @@ route.delete('/:id/edit',isAuthenticated, (req, res) => {
 
 
 
+=======
+>>>>>>> friday
 module.exports = route;
