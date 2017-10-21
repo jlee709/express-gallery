@@ -6,6 +6,7 @@ const route = express.Router();
 const db = require('../models');
 const User = db.user;
 const Photo = db.photo;
+
 //home route
 route.get('/' , (req, res) =>{
   let value = req.isAuthenticated();
@@ -49,31 +50,30 @@ route.get('/:id' , (req, res) =>{
 });
 
 route.get('/:id/edit', (req, res) =>{
-  return Photo.findAll()
-  .then((photos)=>{
-    return res.render('edit', {photos: photos});
+  let photoId = req.params.id;
+
+  return Photo.findById(photoId, {raw: true})
+  .then((photo) => {
+    console.log(photo, 'HA{OF:H:AH:AB:ABG:AH"LAN:AOHF:HF');
+    return res.render('edit', {photo: photo});
   });
 });
 
 //UNDER MAINTAITNNCE - updates too many photos
-route.put('/:id/edit', isAuthenticated, (req,res) => {
 
 route.put('/:id/edit', (req,res) => {
-  let userId = req.params.id;
-  let title = req.body.title;
-  let link = req.body.link;
+  let photoId = req.params.id;
+  let photoTitle = req.body.title;
+  let photoLink = req.body.link;
 
-  return User.findById(userId)
-  .then((user)=>{
-  return Photo.findByIdAndupdate({title: title, link: link}, {where:{userId: id}})
-  return Photo.update({title: title, link: link}, {where:{userId: user.id}})
+  return Photo.update({title: photoTitle, link: photoLink}, {where:{id: photoId}})
   .then((updatedPhoto) => {
+    console.log(updatedPhoto, " XXXXXXXXX******XXXXXXXXXX");
   return res.json("updatedPhoto");
   });
-});
-});
+ });
 
-route.delete('/:id/edit',isAuthenticated, (req, res) => {
+route.delete('/:id/delete', isAuthenticated, (req, res) => {
   let userId = req.params.id;
 
   return Photo.findById(userId)
@@ -84,20 +84,6 @@ route.delete('/:id/edit',isAuthenticated, (req, res) => {
     });
   });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 module.exports = route;

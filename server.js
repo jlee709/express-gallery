@@ -13,13 +13,17 @@ const redis = require('connect-redis')(session);
 const usersRoute = require('./routes/users');
 const LocalStrategy = require('passport-local').Strategy;
 const saltRounds = 12;
+const methodOverride = require('method-override'); 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.engine('.hbs', exphbs({defaultLayout: 'main', extName: '.hbs'}));
 app.set('view engine', '.hbs');
 app.use(express.static('assets'));
+app.use(methodOverride('_method'));
 
 //PASSPORT - AUTHORIZATION
 app.use(session({

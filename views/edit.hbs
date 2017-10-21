@@ -4,22 +4,16 @@
 <link href='https://fonts.googleapis.com/css?family=Raleway:400,800,700,900,300,100' rel='stylesheet' type='text/css'>
 
 
-
-
-
-
 <div class="overlay">
   <div class="wrap">
    <h1>_Edit</h1>
-<form action="/users/?_method=PUT" method="post">
-   <input type="text" placeholder="_Title" name="title">
-   <input type="text"placeholder="_Link" name="link">
-   <input type="text"placeholder="_PhotoId" name="id">{{!-- change id later --}}
+<form action="/photos/{{photo.id}}/edit?_method=PUT" method="post">
+   <input type="text" placeholder="_Title" name="title" value="{{photo.title}}">
+   <input type="text"placeholder="_Link" name="link" value="{{photo.link}}">
    <input type="submit" value="_Edit">
    </form>
   </div>
 </div>
-
 
 
 {{!-- STYLES!!! --}}
