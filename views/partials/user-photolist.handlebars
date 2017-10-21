@@ -5,6 +5,8 @@
   {{#if ../auth}}
      <a href="/photos/{{id}}/edit"><div id="edit">EDIT</div></a>
       <a href=""><div id="delete">DELETE</div></a>
+                <div id="blackWhite" onclick="filter()">B&W</div>
+                <div id="sepia" >SEPIA</div>
    <a href=""><div id="like">{{id}} Likes</div></a>
   {{else}}
   
@@ -15,3 +17,13 @@
     </div>
     
 {{/each}}
+
+<script>
+  function filter(){
+    console.log("hello world");
+    let bw = document.getElementById('blackWhite');
+    console.log(bw);
+    bw.id = "chgBlkWht";
+
+  }
+  </script>
