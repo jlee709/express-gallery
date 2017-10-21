@@ -2,7 +2,13 @@
 <div id="headContainer">
   <div id="title">_GALLERY_MEMBERS</div>
   <div id="titleSeperator"></div>
-  <div id="rightTitle">Our members are dedicated to a photography lifestyle. Our members are dedicated to a photography lifestyle. Our members are dedicated to a photography lifestyle.<br><br><br><span id="currentUser">{{id}}</div>
+  <div id="rightTitle">Our members are dedicated to a photography lifestyle. Our members are dedicated to a photography lifestyle. Our members are dedicated to a photography lifestyle.<br><br><br><span id="currentUser">
+  {{#if id}}
+    {{id}}
+  {{else}}
+    USername doesnt exist
+  {{/if}}
+</div>
 </div>
 <div id="mainSubHeadSeperator"></div>
 <div class="subHeadingContainer">

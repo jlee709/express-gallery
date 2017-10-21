@@ -11,13 +11,15 @@ const Photo = db.photo;
 const saltRounds = 12;
 
 route.get('/' , (req, res) =>{
-  console.log("***********************",req.user);
+  //console.log("***********************",req.user);
   return User.findAll()
   .then((users)=>{
-    let locals = {
-      users:users,
-      id:req.user.username
+   let username = req.user ? req.user.username : null;
+     let locals = {
+      users: users,
+      id: username
     };
+    console.log(locals,"***********************");
     return res.render('users', locals);
   });
 });
@@ -59,7 +61,7 @@ route.post('/login', passport.authenticate('local', {
 
 route.get('/logout', (req,res) =>{
   req.logout();
-  req.sendStatus(200);
+  res.sendStatus(200);
 });
 
 //SECRET ROUTE
