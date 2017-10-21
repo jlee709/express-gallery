@@ -11,16 +11,16 @@ const Photo = db.photo;
 const saltRounds = 12;
 
 route.get('/' , (req, res) =>{
-  //console.log("***********************",req.user);
-  return User.findAll()
-  .then((users)=>{
-   let username = req.user ? req.user.username : null;
-     let locals = {
-      users: users,
-      id: username
+  let val = req.isAuthenticated();
+  return Photo.findAll()
+  .then((photos)=>{
+    let username = req.user ? req.user.username : null;
+    let locals = {
+    photos: photos,
+    id: username,
+    auth: val
     };
-    console.log(locals,"***********************");
-    return res.render('users', locals);
+    return res.render('allphotos', locals);
   });
 });
 //REGISTER ROUTE
@@ -95,7 +95,7 @@ route.get('/:id' ,(req, res) =>{
       photos: userCollection.photos,
       id: username,
       user: id,
-      auth:value
+      auth: ((parseInt(id)===parseInt(req.params.id))===value)
     };
     console.log(locals);
     return res.render('registeredUsers', locals);
@@ -120,6 +120,41 @@ route.post('/:id/new',isAuthenticated, (req, res) => {
   })
   .then( newPhoto => {
     return res.redirect(`http://localhost:3000/users/${userId}`);
+  });
+});
+
+
+route.get('/:id/edit', (req, res) =>{
+  return Photo.findAll()
+  .then((photos)=>{
+    return res.render('edit', {photos: photos});
+  });
+});
+
+
+route.put('/:id/edit', (req,res) => {
+  let userId = req.params.id;
+  let title = req.body.title;
+  let link = req.body.link;
+
+  return User.findById(userId)
+  .then((user)=>{
+    return Photo.update({title: title, link: link}, {where:{userId: user.id}})
+  .then((updatedPhoto) => {
+    return res.json("updatedPhoto");
+  });
+});
+});
+
+route.delete('/:id/edit',isAuthenticated, (req, res) => {
+  let userId = req.params.id;
+
+  return Photo.findById(userId)
+  .then((user) => {
+    return Photo.destroy({where:{userId: user.id}})
+    .then(()=>{
+      return res.redirect('/:id');
+    });
   });
 });
 

@@ -3,9 +3,9 @@
         <div id="mainPhotoHeading">{{title}}</div>
       <img id="mainPhotoImg" src={{link}}></img>
   {{#if ../auth}}
-     <a href="/photos/{{../user}}/edit"><div id="edit">EDIT</div></a>
+     <a href="/users/{{../user}}/edit"><div id="edit">EDIT</div></a>
       <a href=""><div id="delete">DELETE</div></a>
-   <a href=""><div id="like">{{likes}} 5Likes</div></a>
+   <a href=""><div id="like">{{likes}} Likes</div></a>
   {{else}}
   
       <a href=""><div id="like">{{likes}} Likes</div></a>
