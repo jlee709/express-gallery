@@ -50,7 +50,7 @@ route.post('/register', (req,res) =>{
 
 //LOGIN ROUTE
 route.get('/login',(req,res)=>{
-  console.log("***********************",req.user);
+  //console.log("***********************",req.user);
   res.render("login");
 });
 
@@ -66,10 +66,10 @@ route.get('/logout', (req,res) =>{
 
 //SECRET ROUTE
 function isAuthenticated(req, res, next){
-  console.log("***********************",req.user.id,"***********************");
+  //console.log("***********************",req.user.id,"***********************");
   let id = parseInt(req.params.id);
   let userId = parseInt(req.user.id);
-  console.log(id === userId);
+  //console.log(id === userId);
   if(id === req.user.id){
     req.isAuthenticated();
     next();
@@ -82,17 +82,22 @@ function isAuthenticated(req, res, next){
 
 // ID ROUTE
 route.get('/:id' ,(req, res) =>{
-  console.log("***********************",req.user);
+  let value = req.isAuthenticated();
+  console.log(value);
   const userId = req.params.id;
   return User.findById(userId, {
     include: [{model: Photo }]
   }).then(userCollection => {
     console.log(userCollection);
-      let username = req.user ? req.user.username : null;
-      let locals = {
+    let username = req.user ? req.user.username : null;
+    let id = req.user ? req.user.id : null;
+    let locals = {
       photos: userCollection.photos,
-      id: username
+      id: username,
+      user: id,
+      auth:value
     };
+    console.log(locals);
     return res.render('registeredUsers', locals);
   });
 });

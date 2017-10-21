@@ -1,4 +1,7 @@
 {{#each photos}}
-<div id="mainPhotoHeading">{{this.title}} - {{this.link}}</div>
-<img id="mainPhoto" src="{{this.link}}"></img>
+      <div id="mainPhotoContainer">
+      <img id="mainPhotoImg" src={{link}}></img>
+      <a href=""><div id="like">{{likes}} Likes</div></a> 
+    </div>
+    <div id="mainPhotoHeading">{{title}}</div>
 {{/each}}
