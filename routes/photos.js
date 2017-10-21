@@ -52,7 +52,7 @@ route.get('/:id/edit', (req, res) =>{
 });
 
 
-route.put('/:id/edit', (req,res) => {
+route.put('/:id/edit/success', (req,res) => {
   const data = req.body;
   const id = req.params.id;
 
@@ -61,7 +61,7 @@ route.put('/:id/edit', (req,res) => {
       let local ={
         photo : photo
       };
-      return res.render('edit', local);
+      return res.redirect('/users');
     });
   });
 
