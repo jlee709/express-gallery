@@ -1,4 +1,17 @@
 {{#each photos}}
-<img id="mainPhoto" src="{{link}}"></img>
-<div id="mainPhotoHeading">{{title}}</div>
+      <div id="mainPhotoContainer">
+        <div id="mainPhotoHeading">{{title}}</div>
+      <img id="mainPhotoImg" src={{link}}></img>
+  {{#if ../auth}}
+     <a href="/photos/{{../user}}/edit"><div id="edit">EDIT</div></a>
+      <a href=""><div id="delete">DELETE</div></a>
+   <a href=""><div id="like">{{likes}} 5Likes</div></a>
+  {{else}}
+  
+      <a href=""><div id="like">{{likes}} Likes</div></a>
+      
+  {{/if}}
+      
+    </div>
+    
 {{/each}}

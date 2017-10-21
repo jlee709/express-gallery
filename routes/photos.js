@@ -8,9 +8,17 @@ const User = db.user;
 const Photo = db.photo;
 //home route
 route.get('/' , (req, res) =>{
+  let value = req.isAuthenticated();
+  console.log(value);
   return Photo.findAll()
   .then((photos)=>{
-    return res.render('allphotos', {photos: photos});
+    let username = req.user ? req.user.username : null;
+    let locals = {
+    photos: photos,
+    id: username,
+    auth: value
+    };
+    return res.render('allphotos', locals);
   });
 });
 
