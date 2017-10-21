@@ -88,8 +88,8 @@ route.get('/:id' ,(req, res) =>{
     include: [{model: Photo }]
   }).then(userCollection => {
     console.log(userCollection);
-       let username = req.user ? req.user.username : null;
-     let locals = {
+      let username = req.user ? req.user.username : null;
+      let locals = {
       photos: userCollection.photos,
       id: username
     };
